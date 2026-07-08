@@ -151,44 +151,6 @@ gw-workflow/
 
 **v2.x 主要增强：** 省部级默认场景 · 任务确认单 · 错词词库 · 文种专属问诊 · document-skill 衔接
 
----
-
-## 传播素材（小红书 / 公众号）
-
-| 用途 | 文件 | 比例 |
-| --- | --- | --- |
-| GitHub / 公众号头图 | [`assets/gw-workflow-infographic.png`](assets/gw-workflow-infographic.png) | 16:9 横版 |
-| 小红书 / 朋友圈 | [`assets/gw-workflow-xiaohongshu.png`](assets/gw-workflow-xiaohongshu.png) | 9:16 竖版 |
-
-<p align="center">
-  <img src="assets/gw-workflow-xiaohongshu.png" alt="笔杆子 gw-workflow 小红书竖版信息图" width="280">
-</p>
-
-**标题建议**
-
-- Cursor 笔杆子 Skill：省部级公文先问清再写稿
-- 写材料怕踩词？这个 Agent Skill 内置 180+ 错词库
-- 不是 Prompt 合集，是完整公文工作流 gw-workflow
-
-**正文模板**
-
-```text
-给写材料的朋友安利一个 Cursor Agent Skill：笔杆子 · gw-workflow
-
-✅ 先出《任务确认单》再写，不会一句话胡编长文
-✅ 省部级站位 + 降 AI 味 + 三遍润色
-✅ 内置 180+ 错词词库（放管服、一件事一次办…自动替换）
-✅ 需要 Word 可衔接 document-skill
-
-安装：git clone 到 ~/.cursor/skills/gw-workflow
-调用：/gw-workflow
-
-开源 MIT，基于 official-document-skill 深度定制
-```
-
-**标签建议**
-
-`#Cursor` `#AI写材料` `#公文写作` `#笔杆子` `#AgentSkill` `#体制内` `#办公效率`
 
 ---
 
