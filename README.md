@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>gw-workflow</strong> — 面向 Cursor 的省部级公文 Agent Skill<br>
+  <strong>gw-workflow</strong> — 面向材料狗的专属公文 Agent Skill<br>
   不是 Prompt 收藏夹，是<strong>先问清、再写稿、再质检</strong>的完整工作流
 </p>
 
