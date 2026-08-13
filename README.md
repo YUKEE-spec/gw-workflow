@@ -5,13 +5,17 @@
 </p>
 
 <p align="center">
-  <strong>gw-workflow</strong> — 面向 Cursor 的省部级公文 Agent Skill<br>
-  不是 Prompt 收藏夹，是<strong>先问清、再写稿、再质检</strong>的完整工作流
+  <strong>gw-workflow</strong> — 跨平台 Agent Skill，材料狗专用公文完整工作流<br>
+  不光 Prompt 而已，是<strong>先问清、再写稿、再质检</strong><br>
+  作者：<strong>小T同学</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Cursor-Agent%20Skill-blue?style=flat-square" alt="Cursor Agent Skill">
-  <img src="https://img.shields.io/badge/version-v2.3-red?style=flat-square" alt="v2.3">
+  <img src="https://img.shields.io/badge/Agent-Skill-blue?style=flat-square" alt="Agent Skill">
+  <img src="https://img.shields.io/badge/Cursor-✓-lightgrey?style=flat-square" alt="Cursor">
+  <img src="https://img.shields.io/badge/Codex-✓-lightgrey?style=flat-square" alt="Codex">
+  <img src="https://img.shields.io/badge/WorkBuddy-✓-lightgrey?style=flat-square" alt="WorkBuddy">
+  <img src="https://img.shields.io/badge/version-v2.5-red?style=flat-square" alt="v2.5">
   <img src="https://img.shields.io/badge/错词词库-180%2B条-orange?style=flat-square" alt="180+ 错词">
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT">
 </p>
@@ -22,39 +26,60 @@
 
 | | |
 | --- | --- |
-| **给谁用** | 写汇报材料、讲话稿、调研报告、工作方案的「笔杆子」 |
-| **解决什么** | AI 写公文容易假大空、踩敏感词、像 ChatGPT |
-| **怎么不同** | 先出《任务确认单》再动笔；内置 180+ 错词替换；三遍润色 + 评分质检 |
-| **默认场景** | 省部级机关材料（省/部随任务而定，文种看场景） |
+| **给谁用** | 写汇报、讲话、调研、方案、请示、通知的「笔杆子」 |
+| **解决什么** | AI 写公文容易假大空、踩敏感词、像 ChatGPT；或短稿被流程搞复杂 |
+| **怎么不同** | **按轻重分流**：短请示可简写；长材料才确认单+逻辑+润色；站位跟汇报对象走 |
+| **默认场景** | 机关公文（中央到市县均可，不预设省部级） |
+| **运行环境** | 任何支持 [Agent Skills](https://agentskills.io) 规范的客户端 |
+
+---
+
+## 兼容平台
+
+本 Skill 遵循标准 `SKILL.md` 格式，**不绑定单一 IDE**。克隆到对应客户端的 skills 目录即可使用：
+
+| 平台 | 个人级安装路径 | 调用方式 |
+| --- | --- | --- |
+| **Cursor** | `~/.cursor/skills/gw-workflow` | `/gw-workflow` 或 `@gw-workflow` |
+| **Codex** | `~/.codex/skills/gw-workflow` | 对话中提及「gw-workflow / 笔杆子 / 公文」触发 |
+| **WorkBuddy** | `~/.workbuddy/skills/gw-workflow` 或 `~/.codebuddy/skills/gw-workflow` | 按 trigger 自动激活，或直接 @skill |
+| **通用** | `~/.agents/skills/gw-workflow` | 其他兼容 Agent Skills 的客户端 |
+
+也可通过 Skills CLI 安装（若已接入 [skills.sh](https://skills.sh) 生态）：
+
+```bash
+npx skills add YUKEE-spec/gw-workflow -g -y
+```
+
+> 项目级安装：将本目录放入各平台的项目 skills 路径（如 `.cursor/skills/`、`.codebuddy/skills/`），团队可共享。
 
 ---
 
 ## 核心工作流
 
 ```
-你提需求 → 对话澄清 → 《任务确认单》 → 确认
-    → 按文种起草 → 降 AI 味润色 → 错词词库检索 → 评分 ≥80 交付
-    → （可选）document-skill 输出 Word
+轻量：要点齐 → 确认主送/事项 → 起草 → 敏感词
+标准/加重：澄清（对象层级）→（确认单）→（提纲）→ 起草 → 按需润色 → 交付
 ```
 
 | 步骤 | 做什么 | 为什么 |
 | ---: | --- | --- |
-| 0 | 识别起草 / 润色 / 局部改写 | 不同任务不同问法 |
-| 1 | 加载错词词库 + 敏感词纪律 | 定稿前强制合规 |
-| 2 | 三阶段问诊 →《任务确认单》 | 避免一句话生成长文 |
-| 3 | 只从背景材料提取事实 | **不编造**文件、领导、数据 |
-| 4 | 按文种结构起草 + 省部级站位 | 高度够，不假大空 |
-| 5 | 三遍润色 + humanizer | 降 AI 味 |
-| 6 | 全文错词检索，附《修改说明》 | 润色可追溯 |
-| 7 | 需要 `.docx` 时调 document-skill | 内容与排版分工 |
+| 0 | 判轻量 / 标准 / 加重 | 800 字请示不走长流程 |
+| 1 | 加载错词词库 | 定稿合规 |
+| 2 | 按需问诊；对齐**汇报对象级别** | 站位匹配，不默认高规格 |
+| 3 | 只从材料提取事实 | **不编造** |
+| 4 | 加重才出逻辑提纲 | 先通篇后咬字 |
+| 5 | 按文种起草；落实类且需要时定锚 | 短稿少空话 |
+| 6 | 润色深度随档位 | 逻辑优先可追溯 |
+| 7 | 需要时输出 docx | 内容与版式分工 |
 
 ---
 
 ## 亮点功能
 
-### 1. 先问清，再写稿
+### 1. 先问清对象，再决定问多少
 
-新建复杂稿件不会直接开写。Agent 会先问：场合、对象、层级、要点、篇幅、背景材料，汇总为《任务确认单》等你确认。
+短请示少问快写；长材料才出《任务确认单》。站位跟**汇报/主送对象级别**走，不处处预设「省部级」。
 
 ### 2. 180+ 条错词词库
 
@@ -64,44 +89,51 @@
 
 > 重点禁用示例：`放管服` · `一件事一次办` · `市场主体`（非文件原文引用时）
 
-### 3. 降 AI 味 + 评分质检
+### 3. 逻辑通读 + 降 AI 味（长稿）
 
-空泛口号、机械排比、万能结尾会被改写；满分 100，**低于 80 不交付**，优先补事实密度与敏感词合规。
+加重稿先过逻辑再抠文风；落实类按对象需要定锚。轻量稿以敏感词与空话清理为主。
 
-### 4. 与 document-skill 分工
+### 4. Word 输出（可选）
 
-| gw-workflow | document-skill |
+正文定稿后，在 Cursor 等环境可衔接 **document-skill** 排版；其他平台可用 `python-docx` 或手动粘贴到 Word。
+
+| gw-workflow | 排版 / docx |
 | --- | --- |
-| 对话澄清、站位、错词、正文 | Word / docx 排版 |
-| 输出 Markdown 或纯文本 | 用户要 docx 时再调用 |
+| 对话澄清、逻辑、定锚、错词、正文 | Word 版式、三线表等 |
 
 ---
 
 ## 快速开始
 
-### 安装（Cursor 个人 Skill）
+### 方式一：git clone（推荐）
 
 ```bash
-git clone https://github.com/YUKEE-spec/gw-workflow.git ~/.cursor/skills/gw-workflow
+git clone https://github.com/YUKEE-spec/gw-workflow.git ~/.cursor/skills/gw-workflow   # Cursor
+git clone https://github.com/YUKEE-spec/gw-workflow.git ~/.codex/skills/gw-workflow     # Codex
+git clone https://github.com/YUKEE-spec/gw-workflow.git ~/.workbuddy/skills/gw-workflow # WorkBuddy
 ```
 
-重启 Cursor 或新开 Agent 对话即可生效。
+任选其一即可；多平台共用时可 clone 到 `~/.agents/skills/gw-workflow`。
 
-### 调用
+安装后重启客户端或新开 Agent 对话。
 
+### 方式二：Skills CLI
+
+```bash
+npx skills add YUKEE-spec/gw-workflow -g -y
 ```
-/gw-workflow
-```
 
-或 `@gw-workflow`，示例：
+### 调用示例
 
 ```text
 /gw-workflow 起草一份向省委常委会汇报的 XX 工作材料，背景材料如下：……
 ```
 
 ```text
-/gw-workflow 润色下面这段，注意错词词库和降 AI 味：……
+用 gw-workflow 润色下面这段，注意错词词库和降 AI 味：……
 ```
+
+（Codex / WorkBuddy 无 slash 命令时，直接在对话中 @skill 或说明「按 gw-workflow 流程处理」。）
 
 ---
 
@@ -119,14 +151,14 @@ git clone https://github.com/YUKEE-spec/gw-workflow.git ~/.cursor/skills/gw-work
 gw-workflow/
 ├── assets/
 │   ├── gw-workflow-infographic.png   # GitHub 横版信息图（16:9）
-│   └── gw-workflow-xiaohongshu.png   # 小红书竖版海报（9:16）
 ├── SKILL.md                          # Agent 首读（核心流程）
 ├── 错词词库-20260708.csv             # 错词→建议词主表（可替换更新）
 ├── reference-intake.md               # 对话澄清、文种问诊
+├── reference-logic.md                # 篇章逻辑、段落功能、逻辑通读
 ├── reference-sensitive.md            # 敏感词与引用纪律
-├── reference-templates.md            # 文种结构与格式
-├── reference-style.md                # 降 AI 味、评分、检查清单
-├── examples.md                       # 省部级示例
+├── reference-templates.md            # 文种结构、政治开篇定锚
+├── reference-style.md                # 四遍润色、评分、检查清单
+├── examples.md                       # 轻量/标准/加重示例
 ├── tests.md                          # 回归测试用例
 └── LICENSE
 ```
@@ -137,9 +169,14 @@ gw-workflow/
 
 | 版本 | 说明 |
 | --- | --- |
-| **v2.3** | 接入用户错词词库（180+ 条） |
-| v2.2 | 更名为 `gw-workflow`（笔杆子 · 公文工作流） |
-| v2.1 | 拆分 reference；文种问诊；敏感词独立 |
+| **v2.5.1** | 改稿可在 Word 批注/修订交付（衔接 document-skill） |
+| v2.5 | 去掉处处省部级预设；按汇报对象调站位；短稿轻量路径 |
+| v2.4.2 | 结构范文 B（南方AI产业实地调研报告） |
+| v2.4.1 | 结构范文 A（世AI大会主旨讲话） |
+| v2.4 | 篇章逻辑；政治开篇定锚；四遍润色 |
+| v2.3 | 错词词库（180+ 条） |
+| v2.2 | 更名为 `gw-workflow` |
+| v2.1 | 拆分 reference；文种问诊 |
 | v2.0 | 对话澄清、站位、敏感词 |
 | v1.0 | 上游 [official-document-skill](https://github.com/Liuxiangjian-ai/official-document-skill) |
 
@@ -147,9 +184,49 @@ gw-workflow/
 
 ## 致谢 Acknowledgments
 
+**作者：小T同学**
+
 本 Skill 在 [Liuxiangjian-ai/official-document-skill](https://github.com/Liuxiangjian-ai/official-document-skill) 基础上深度定制，感谢原作者在公文格式、降 AI 味与人性化润色方面的扎实工作。
 
-**v2.x 主要增强：** 省部级默认场景 · 任务确认单 · 错词词库 · 文种专属问诊 · document-skill 衔接
+**v2.x 主要增强：** 按对象调站位 · 轻重分流 · 任务确认单（按需）· 错词词库 · 篇章逻辑 · 政治开篇定锚 · 跨平台 Agent Skill
+
+---
+
+## 传播素材（小红书 / 公众号）
+
+| 用途 | 文件 | 比例 |
+| --- | --- | --- |
+| GitHub / 公众号头图 | [`assets/gw-workflow-infographic.png`](assets/gw-workflow-infographic.png) | 16:9 横版 |
+
+<p align="center">
+  <img src="assets/gw-workflow-infographic.png" alt="笔杆子 gw-workflow 信息图" width="720">
+</p>
+
+**标题建议**
+
+- 笔杆子 Skill：短请示简写、长材料先问清（Cursor / Codex / WorkBuddy）
+- 写材料怕踩词？这个 Agent Skill 内置 180+ 错词库
+- 不是 Prompt 合集，是完整公文工作流 gw-workflow
+
+**正文模板**
+
+```text
+给写材料的朋友安利一个 Agent Skill：笔杆子 · gw-workflow
+
+✅ Cursor / Codex / WorkBuddy 都能装，标准 SKILL.md 格式
+✅ 短稿轻量、长稿确认单；站位跟汇报对象走
+✅ 逻辑通读 + 错词词库 + 按需润色
+✅ 内置 180+ 错词词库（放管服、一件事一次办…自动替换）
+
+安装：git clone 到对应平台的 skills 目录
+调用：/gw-workflow 或对话中 @gw-workflow
+
+开源 MIT，基于 official-document-skill 深度定制
+```
+
+**标签建议**
+
+`#AgentSkill` `#AI写材料` `#公文写作` `#笔杆子` `#Cursor` `#Codex` `#WorkBuddy` `#办公效率`
 
 
 ---
