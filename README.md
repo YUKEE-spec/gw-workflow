@@ -186,51 +186,5 @@ gw-workflow/
 
 **作者：小T同学**
 
-本 Skill 在 [Liuxiangjian-ai/official-document-skill](https://github.com/Liuxiangjian-ai/official-document-skill) 基础上深度定制，感谢原作者在公文格式、降 AI 味与人性化润色方面的扎实工作。
-
-**v2.x 主要增强：** 按对象调站位 · 轻重分流 · 任务确认单（按需）· 错词词库 · 篇章逻辑 · 政治开篇定锚 · 跨平台 Agent Skill
-
----
-
-## 传播素材（小红书 / 公众号）
-
-| 用途 | 文件 | 比例 |
-| --- | --- | --- |
-| GitHub / 公众号头图 | [`assets/gw-workflow-infographic.png`](assets/gw-workflow-infographic.png) | 16:9 横版 |
-
-<p align="center">
-  <img src="assets/gw-workflow-infographic.png" alt="笔杆子 gw-workflow 信息图" width="720">
-</p>
-
-**标题建议**
-
-- 笔杆子 Skill：短请示简写、长材料先问清（Cursor / Codex / WorkBuddy）
-- 写材料怕踩词？这个 Agent Skill 内置 180+ 错词库
-- 不是 Prompt 合集，是完整公文工作流 gw-workflow
-
-**正文模板**
-
-```text
-给写材料的朋友安利一个 Agent Skill：笔杆子 · gw-workflow
-
-✅ Cursor / Codex / WorkBuddy 都能装，标准 SKILL.md 格式
-✅ 短稿轻量、长稿确认单；站位跟汇报对象走
-✅ 逻辑通读 + 错词词库 + 按需润色
-✅ 内置 180+ 错词词库（放管服、一件事一次办…自动替换）
-
-安装：git clone 到对应平台的 skills 目录
-调用：/gw-workflow 或对话中 @gw-workflow
-
-开源 MIT，基于 official-document-skill 深度定制
-```
-
-**标签建议**
-
-`#AgentSkill` `#AI写材料` `#公文写作` `#笔杆子` `#Cursor` `#Codex` `#WorkBuddy` `#办公效率`
-
-
----
-
-## 许可证
-
-MIT（继承上游 [official-document-skill](https://github.com/Liuxiangjian-ai/official-document-skill)）
+## skillhub评分
+<img width="2158" height="1258" alt="b7ad5aa06f62e5b3e77b8f7819ed63c5" src="https://github.com/user-attachments/assets/71e00952-c232-4d39-b9e7-5d4abff75f15" />
