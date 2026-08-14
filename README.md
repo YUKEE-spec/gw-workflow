@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>gw-workflow</strong> — 跨平台 Agent Skill，目前公文写作类Skil中设计最精细的一个，材料狗专用<br>
-  不光 Prompt 而已，是<strong>先问清、再写稿、再质检</strong><br>
+  <strong>每次动手、先问清、再写稿、再质检</strong><br>
   作者：<strong>小T同学</strong>
 </p>
 
