@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>gw-workflow</strong> — 跨平台 Agent Skill，材料狗专用公文完整工作流<br>
+  <strong>gw-workflow</strong> — 跨平台 Agent Skill，目前公文写作类Skil中设计最精细的一个，材料狗专用<br>
   不光 Prompt 而已，是<strong>先问清、再写稿、再质检</strong><br>
   作者：<strong>小T同学</strong>
 </p>
@@ -31,6 +31,9 @@
 | **怎么不同** | **按轻重分流**：短请示可简写；长材料才确认单+逻辑+润色；站位跟汇报对象走 |
 | **默认场景** | 机关公文（中央到市县均可，不预设省部级） |
 | **运行环境** | 任何支持 [Agent Skills](https://agentskills.io) 规范的客户端 |
+
+## skillhub评分
+<img width="2158" height="1258" alt="b7ad5aa06f62e5b3e77b8f7819ed63c5" src="https://github.com/user-attachments/assets/71e00952-c232-4d39-b9e7-5d4abff75f15" />
 
 ---
 
@@ -182,9 +185,6 @@ gw-workflow/
 
 ---
 
-## 致谢 Acknowledgments
 
 **作者：小T同学**
 
-## skillhub评分
-<img width="2158" height="1258" alt="b7ad5aa06f62e5b3e77b8f7819ed63c5" src="https://github.com/user-attachments/assets/71e00952-c232-4d39-b9e7-5d4abff75f15" />
